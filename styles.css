@@ -1,0 +1,53 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: tra;
+    background: linear-gradient(15deg, rgb(238, 97, 75), rgb(136, 240, 245));
+    color: #343a40;
+}
+
+/* Estilos para la imagen de perfil en la página de inicio */
+.img-fluid {
+    max-width: 75%;
+    height: auto;
+}
+
+/* Estilos para los botones */
+.btn {
+    margin-right: 10px;
+}
+
+/* Estilos para las secciones */
+section {
+    padding: 50px 0;
+}
+
+/* Estilos para los títulos de sección */
+h2 {
+    margin-bottom: 30px;
+}
+
+/* Estilos para las tarjetas de proyectos */
+.card {
+    margin-bottom: 20px;
+    background: transparent;
+    border: 4px solid rgba(16, 12, 12, 0.032);
+    backdrop-filter: blur(5px);
+    color: black;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #248f9b !important;
+}
+
+.nav-link {
+    color: #fff !important;
+}
+
+.nav-link:hover {
+    color: #ccc !important;
+}
+#proyectos .container{
+    background: transparent;
+}

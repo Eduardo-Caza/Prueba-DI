@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Nueva Habilidad</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="stylesA.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Portafolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add_project.html">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add_habilidades.html">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Añadir Nueva Habilidad</h2>
+        <form id="formulario-habilidad">
+            <div class="mb-3">
+                <label for="categoriaHabilidad" class="form-label">Categoría</label>
+                <input type="text" class="form-control" id="categoriaHabilidad" required>
+            </div>
+            <div class="mb-3">
+                <label for="detallesHabilidad" class="form-label">Detalles</label>
+                <textarea class="form-control" id="detallesHabilidad" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Añadir Habilidad</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (requerido para algunos componentes) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const formularioHabilidad = document.getElementById("formulario-habilidad");
+            formularioHabilidad.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const categoriaHabilidad = document.getElementById("categoriaHabilidad").value;
+                const detallesHabilidad = document.getElementById("detallesHabilidad").value;
+
+                const nuevaHabilidad = {
+                    categoria: categoriaHabilidad,
+                    detalles: detallesHabilidad
+                };
+
+                const habilidadesGuardadas = JSON.parse(localStorage.getItem("habilidades")) || [];
+                habilidadesGuardadas.push(nuevaHabilidad);
+                localStorage.setItem("habilidades", JSON.stringify(habilidadesGuardadas));
+
+                formularioHabilidad.reset();
+                alert("Habilidad añadida correctamente");
+            });
+        });
+    </script>
+</body>
+</html>

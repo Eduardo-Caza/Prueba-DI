@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Estudiante</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Portafolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Login.html">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Login.html">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página de Inicio -->
+    <section id="inicio" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="perfil.webp" class="img-fluid rounded-circle" alt="Imagen de perfil">
+                </div>
+                <div class="col-md-8">
+                    <h2>Eduardo Caza</h2>
+                    <p>Titulo bachiller en Informatica</p>
+                    <p>Estudiante de la Escuela Politecnica Nacional</p>
+                    <p>20 años</p>
+                    <p>Sexo: Masculino</p>
+                    <p>Horas de Vinculacion: Laboratirio de Invertebrados del Departamento de Biologia</p>
+                    <p>Es el Exito!!</p>
+                    <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#habilidades" class="btn btn-primary">Habilidades</a>
+                    <a href="#contacto" class="btn btn-secondary">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Sección de Proyectos -->
+    <section id="proyectos" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Proyectos</h2>
+            <div id="lista-proyectos" class="row"></div> <!-- Ahora usaremos una fila (row) para contener los proyectos -->
+        </div>
+    </section>
+
+
+    <!-- Sección de Habilidades -->
+    <section id="habilidades" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Habilidades</h2>
+            <div id="lista-habilidades"></div> <!-- Aquí se insertarán dinámicamente las habilidades -->
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center">Contacto</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Formulario de contacto -->
+                    <form id="formulario-contacto">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="mensaje" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <!-- Información de contacto -->
+                    <h4>Información de Contacto</h4>
+                    <p>Nombre: Eduardo Alejandro Caza Naranjo</p>
+                    <p>Desarrollador de Software</p>
+                    <p>Correo Electrónico: eduardo.caza@epn.edu.ec</p>
+                    <p>Redes Sociales: <a href="https://www.Facebook.com">Facebook</a>, <a href="https://www.Twitter.com">Twitter</a>, <a href="https://www.Instagram.com">Instagram</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS (requerido para algunos componentes) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            cargarProyectos();
+            cargarHabilidades();
+        });
+
+        function cargarProyectos() {
+            const proyectosGuardados = JSON.parse(localStorage.getItem("proyectos")) || [];
+            const listaProyectos = document.getElementById("lista-proyectos");
+            listaProyectos.innerHTML = "";
+            proyectosGuardados.forEach(function(proyecto) {
+                const proyectoHTML = `
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">${proyecto.nombre}</h5>
+                            <p class="card-text">${proyecto.descripcion}</p>
+                            <a href="${proyecto.github}" class="btn btn-primary" target="_blank">Ver Repositorio</a>
+                        </div>
+                    </div>
+                `;
+                listaProyectos.insertAdjacentHTML("beforeend", proyectoHTML);
+            });
+        }
+
+        function cargarHabilidades() {
+            const habilidadesGuardadas = JSON.parse(localStorage.getItem("habilidades")) || [];
+            const listaHabilidades = document.getElementById("lista-habilidades");
+            listaHabilidades.innerHTML = "";
+            habilidadesGuardadas.forEach(function(habilidad) {
+                const habilidadHTML = `
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">${habilidad.categoria}</h5>
+                            <p class="card-text">${habilidad.detalles}</p>
+                        </div>
+                    </div>
+                `;
+                listaHabilidades.insertAdjacentHTML("beforeend", habilidadHTML);
+            });
+        }
+    </script>
+</body>
+</html>

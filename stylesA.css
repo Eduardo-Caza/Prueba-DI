@@ -1,0 +1,7 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: transparent;
+    background: linear-gradient(15deg, rgb(238, 97, 75), rgb(136, 240, 245)) no-repeat;
+    color: #343a40;
+    height: 100vh;
+}
