@@ -4,9 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
         var username = document.querySelector('input[type="text"]').value;
         var password = document.querySelector('input[type="password"]').value;
         if (username === "EduardoCaza" && password === "123456") {
-            alert("Usuario y contraseña correctos");
+            // Redirigir a la página add_project.html
+            window.location.href = "add_project.html";
         } else {
             alert("Usuario o contraseña incorrectos");
+            // Limpiar el campo de contraseña
+            document.querySelector('input[type="password"]').value = "";
         }
     });
 });
